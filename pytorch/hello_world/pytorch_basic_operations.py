@@ -34,3 +34,16 @@ print(tensor)
 
 #矩阵乘法
 print(torch.matmul(a, tensor))
+
+print(torch.sum(tensor))
+
+print(torch.min(a))
+#最小值所在的位置
+print(torch.argmin(a))
+
+print(torch.max(b))
+#最大值所在的位置
+print(torch.argmax(a))
+
+#平均值
+torch.mean(tensor)
