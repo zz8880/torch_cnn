@@ -38,5 +38,23 @@ mes_loss = nn.MSELoss()
 #定义优化器
 optimizer = optim.SGD(model.parameters(), lr= 0.1)
 
-for name, parameters in model.named_parameters():
-    print('name:{}, param:{}'.format(name, parameters))
+#for name, parameters in model.named_parameters():
+#    print('name:{}, param:{}'.format(name, parameters))
+
+for i in range(201):
+    out = model(inputs)
+    #计算loss
+    loss = mes_loss(out, target)
+    #梯度清零
+    optimizer.zero_grad()
+    #计算梯度
+    loss.backward()
+    #修改权值
+    optimizer.step()
+    if i % 20 == 0:
+        print(i, loss.item())
+
+y_pred = model(inputs)
+plt.scatter(x_data, y_data)
+plt.plot(x_data, y_pred.data.numpy(), 'r-', lw=3)
+plt.show()
